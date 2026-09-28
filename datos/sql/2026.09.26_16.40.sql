@@ -1,5 +1,5 @@
 CREATE TABLE cliente (
-    id_cliente INT AUTO_INCREMENT NOT NULL,
+    id_cliente INT AUTO_INCREMENT,
     rut VARCHAR(12) UNIQUE NOT NULL,
     nombre_apellido VARCHAR(50) NOT NULL,
     correo VARCHAR(100),
@@ -12,8 +12,7 @@ CREATE TABLE restaurantes (
     nombre VARCHAR(50) NOT NULL,
     telefono VARCHAR(12),
     direccion VARCHAR(100),
-    CONSTRAINT pk_restaurantes PRIMARY KEY (id_restaurante),
-    CONSTRAINT uq_restaurante_nombre UNIQUE (nombre)
+    CONSTRAINT pk_restaurantes PRIMARY KEY (id_restaurante)
 ) COMMENT 'Informacion de restaurantes';
  
 
@@ -47,7 +46,7 @@ CREATE TABLE reservas (
     fecha DATE NOT NULL,
     hora TIME NOT NULL,
     cantidad_personas INT NOT NULL,
-    estado VARCHAR(20) NOT NULL DEFAULT 'PENDIENTE', -- 'PENDIENTE','CONFIRMADA','CANCELADA','COMPLETADA'
+    estado INT NOT NULL DEFAULT 1, 
     id_cliente INT NOT NULL,
     id_restaurante INT NOT NULL,
     id_mesa INT NOT NULL,
