@@ -1,11 +1,11 @@
-from datos.modelos.mesa import Mesa
-from datos.repositorios.mesa_repositorio import (
+from datos.modelos.mesas import Mesa
+from datos.repositorios.repositorio_mesa import (
     actualizar_mesa,
     buscar_mesa_por_id,
     guardar_mesa,
     listar_mesas_activas,
 )
-from datos.repositorios.restaurante_repositorio import buscar_restaurante_por_id
+from datos.repositorios.repositorio_restaurante import buscar_restaurante_por_id
 
 
 def crear_mesa(id_restaurante, numero_mesa, capacidad):

@@ -1,5 +1,5 @@
 from datos.modelos.cliente import Cliente
-from datos.repositorios.cliente_repositorio import (
+from datos.repositorios.repositorio_clientes import (
     actualizar_cliente,
     buscar_cliente_por_rut,
     guardar_cliente,
@@ -16,6 +16,7 @@ def crear_cliente(rut, nombre_apellido, correo, telefono):
         nombre_apellido=nombre_apellido.strip(),
         correo=correo.strip() if correo.strip() else None,
         telefono=telefono.strip() if telefono.strip() else None,
+        habilitado=True,
     )
     return guardar_cliente(nuevo_cliente)
 
@@ -36,4 +37,13 @@ def modificar_cliente(rut, nuevo_nombre, nuevo_correo, nuevo_telefono):
     if nuevo_telefono.strip():
         cliente.telefono = nuevo_telefono.strip()
 
+    return actualizar_cliente(cliente)
+
+
+def eliminar_cliente_logico(rut):
+    cliente = buscar_cliente_por_rut(rut)
+    if not cliente:
+        return False, f"No se encontró cliente con el RUT '{rut}'."
+
+    cliente.habilitado = False
     return actualizar_cliente(cliente)

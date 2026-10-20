@@ -1,4 +1,4 @@
-from datos.modelos.mesa import Mesa
+from datos.modelos.mesas import Mesa
 
 
 def guardar_mesa(mesa_obj):

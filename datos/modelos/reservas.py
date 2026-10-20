@@ -10,7 +10,7 @@ from peewee import (
 )
 from datos.conexion import db
 from datos.modelos.cliente import Cliente
-from datos.modelos.mesa import Mesa
+from datos.modelos.mesas import Mesa
 
 
 class Reserva(Model):

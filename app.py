@@ -1,8 +1,8 @@
 from auxiliares.menu import menu_superior
-from presentacion.cliente_presentacion import menu_clientes
-from presentacion.mesa_presentacion import menu_mesas
-from presentacion.reserva_presentacion import menu_reservas
-from presentacion.restaurante_presentacion import menu_restaurantes
+from presentacion.presentacion_cliente import menu_clientes
+from presentacion.presentacion_mesa import menu_mesas
+from presentacion.presentacion_reserva import menu_reservas
+from presentacion.presentacion_restaurante import menu_restaurantes
 
 
 def main():

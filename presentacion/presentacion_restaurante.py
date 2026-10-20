@@ -1,8 +1,8 @@
 from prettytable import PrettyTable
-from negocio.restaurante_negocio import (
+
+from negocio.negocio_restaurante import (
     crear_restaurante,
     eliminar_restaurante_logico,
-    listar_restaurantes_activos,
     modificar_restaurante,
     obtener_restaurantes,
 )
@@ -50,7 +50,7 @@ def menu_restaurantes():
                 try:
                     id_rest = int(input("\nIngrese el ID del restaurante a deshabilitar: "))
                     confirmar = input(f"¿Confirma deshabilitar el restaurante ID {id_rest}? (s/n): ").lower()
-                    if confirmar == 's':
+                    if confirmar == "s":
                         exito, mensaje = eliminar_restaurante_logico(id_rest)
                         print(f"\n>> {mensaje}")
                 except ValueError:

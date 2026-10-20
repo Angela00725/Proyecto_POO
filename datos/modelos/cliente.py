@@ -10,9 +10,9 @@ class BaseModel(Model):
 class Cliente(BaseModel):
     correo = CharField(max_length=100, null = True)
     id_cliente = AutoField()
-    nombre_apellido = CharFiel(max_length = 50)
+    nombre_apellido = CharField(max_length = 50)
     rut = CharField(max_length=12, unique=True)
-    telefono = CharFiel(max_length=15, null=True)
+    telefono = CharField(max_length=15, null=True)
 
     class Meta:
         table_name = 'cliente'

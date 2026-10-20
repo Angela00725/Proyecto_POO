@@ -1,12 +1,12 @@
 from prettytable import PrettyTable
 
-from negocio.reserva_negocio import (
+from negocio.negocio_reserva import (
     cancelar_reserva,
     crear_reserva,
     obtener_reservas,
 )
-from presentacion.cliente_presentacion import mostrar_tabla_clientes
-from presentacion.mesa_presentacion import mostrar_tabla_mesas
+from presentacion.presentacion_cliente import mostrar_tabla_clientes
+from presentacion.presentacion_mesa import mostrar_tabla_mesas
 
 
 def menu_reservas():
@@ -43,7 +43,7 @@ def menu_reservas():
                 mostrar_tabla_reservas()
                 try:
                     id_res = int(input("\nIngrese el ID de la reserva a cancelar: "))
-                    exito, mensaje = cancelar_reserva(id_res)
+                    mensaje = cancelar_reserva(id_res)
                     print(f"\n>> {mensaje}")
                 except ValueError:
                     print("\n>> Error: El ID debe ser un número entero.")

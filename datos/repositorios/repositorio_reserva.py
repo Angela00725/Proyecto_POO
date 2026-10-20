@@ -1,4 +1,4 @@
-from datos.modelos.reserva import Reserva
+from datos.modelos.reservas import Reserva
 
 
 def guardar_reserva(reserva_obj):

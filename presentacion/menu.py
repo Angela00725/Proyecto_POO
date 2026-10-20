@@ -1,39 +1,39 @@
 import sys
-from auxiliares import nombre_aplicacion,version_aplicacion,menu_superior,menu_biblioteca,opcion_invalida,menu_anterior
-from presentacion.presentacion_biblioteca import mostrar_paises
-from presentacion.presentacion_biblioteca import solicitar_datos_pais
+
+from auxiliares import (
+    menu_superior,
+    nombre_aplicacion,
+    opcion_invalida,
+    version_aplicacion,
+)
+from presentacion.presentacion_cliente import menu_clientes
+from presentacion.presentacion_mesa import menu_mesas
+from presentacion.presentacion_reserva import menu_reservas
+from presentacion.presentacion_restaurante import menu_restaurantes
+
 
 def menu_principal():
-    print(f'\n{nombre_aplicacion} - {version_aplicacion}')
-    print(f'{'=' * len(nombre_aplicacion)}==={'=' * len(version_aplicacion)}\n')
+    separador = "=" * (len(nombre_aplicacion) + len(version_aplicacion) + 3)
+    print(f"\n{nombre_aplicacion} - {version_aplicacion}")
+    print(f"{separador}\n")
 
     while True:
-        for clave,valor in menu_superior.items():
-            print(f'[{clave}] - {valor}')
-        opcion_usuario = input('\nIngrese su opción [1-4]: ')
+        for clave, valor in menu_superior.items():
+            print(f"[{clave}] - {valor}")
+
+        opcion_usuario = input("\nIngrese su opción: ").strip()
 
         match opcion_usuario:
-            case '1':
-                while True:
-                    for numero,nombre in menu_biblioteca.items():
-                        print(f'[{numero}] - {nombre}')
-                    opcion_sub_menu = input('\nIngrese su opción [0-2]: ')
-                    match opcion_sub_menu:
-                        case '1':
-                            mostrar_paises()
-                        case '2':
-                            solicitar_datos_pais()
-                        case '0':
-                            print(menu_anterior)
-                            break
-                        case _:
-                            print(opcion_invalida)
-            case '2':
-                print('Opción 2')
-            case '3':
-                print('Opción 3')
-            case '0':
-                print('Saliendo...')
+            case "1":
+                menu_restaurantes()
+            case "2":
+                menu_reservas()
+            case "3":
+                menu_mesas()
+            case "4":
+                menu_clientes()
+            case "0":
+                print("\n¡Gracias por utilizar el sistema! Saliendo...")
                 sys.exit()
             case _:
-                print(opcion_invalida)
+                print(f"\n>> {opcion_invalida}")

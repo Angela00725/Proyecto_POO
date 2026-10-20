@@ -1,11 +1,11 @@
 from prettytable import PrettyTable
 
-from negocio.mesa_negocio import (
+from negocio.negocio_mesa import (
     crear_mesa,
     eliminar_mesa_logico,
     obtener_mesas,
 )
-from presentacion.restaurante_presentacion import mostrar_tabla_restaurantes
+from presentacion.presentacion_restaurante import mostrar_tabla_restaurantes
 
 
 def menu_mesas():
@@ -28,7 +28,7 @@ def menu_mesas():
                     id_rest = int(input("\nIngrese el ID del Restaurante donde está la mesa: "))
                     num_mesa = int(input("Número de Mesa: "))
                     capacidad = int(input("Capacidad de personas: "))
-                    exito, mensaje = crear_mesa(id_rest, num_mesa, capacidad)
+                    mensaje = crear_mesa(id_rest, num_mesa, capacidad)
                     print(f"\n>> {mensaje}")
                 except ValueError:
                     print("\n>> Error: Debe ingresar números válidos.")
@@ -39,7 +39,7 @@ def menu_mesas():
                 mostrar_tabla_mesas()
                 try:
                     id_m = int(input("\nIngrese el ID de la mesa a deshabilitar: "))
-                    exito, mensaje = eliminar_mesa_logico(id_m)
+                    mensaje = eliminar_mesa_logico(id_m)
                     print(f"\n>> {mensaje}")
                 except ValueError:
                     print("\n>> Error: Debe ingresar un número entero.")

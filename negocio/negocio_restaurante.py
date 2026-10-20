@@ -1,5 +1,5 @@
 from datos.modelos.restaurante import Restaurante
-from datos.repositorios.restaurante_repositorio import (
+from datos.repositorios.repositorio_restaurante import (
     actualizar_restaurante,
     buscar_restaurante_por_id,
     guardar_restaurante,
