@@ -1,0 +1,16 @@
+INSERT INTO cliente (rut, nombre_apellido, correo, telefono, habilitado) VALUES
+('15678901-2', 'Carlos Silva Tapia', 'carlos.silva@gmail.com', '+56912345678', TRUE),
+('16789012-3', 'Andrea Morales Ríos', 'andrea.morales@yahoo.com', '+56923456789', TRUE),
+('17890123-4', 'Felipe Araya Fuentes', 'felipe.araya@hotmail.com', '+56934567890', TRUE),
+('18901234-5', 'Camila Muñoz Castro', 'camila.munoz@outlook.com', '+56945678901', TRUE),
+('19012345-6', 'Diego Rojas Navarrete', 'diego.rojas@gmail.com', '+56956789012', TRUE),
+('20123456-7', 'Valentina Espinoza Soto', 'vale.espinoza@gmail.com', '+56967890123', TRUE),
+('14234567-8', 'Gonzalo Valenzuela Vega', 'gonzalo.v@gmail.com', '+56978901234', TRUE),
+('13345678-9', 'Claudia Contreras Jara', 'c.contreras@yahoo.com', '+56989012345', TRUE),
+('12456789-0', 'Sebastián Sepúlveda Díaz', 'seb.sepulveda@gmail.com', '+56990123456', TRUE),
+('15567890-1', 'Paula Reyes Sepúlveda', 'paula.reyes@hotmail.com', '+56901234567', TRUE),
+('16678901-K', 'Matías Morales Vera', 'matias.m@gmail.com', '+56911223344', TRUE),
+('17789012-1', 'Daniela Figueroa Palma', 'dani.figueroa@gmail.com', '+56922334455', TRUE),
+('18890123-2', 'Nicolás Torres Henríquez', 'nico.torres@outlook.com', '+56933445566', TRUE),
+('19901234-3', 'Fernanda Godoy Lagos', 'fer.godoy@gmail.com', '+56944556677', TRUE),
+('20012345-4', 'Javier Sanhueza Bravo', 'javier.s@yahoo.com', '+56955667788', TRUE);

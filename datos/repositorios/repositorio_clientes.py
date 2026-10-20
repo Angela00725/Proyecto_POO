@@ -1,27 +1,33 @@
+from peewee import IntegrityError, OperationalError
 from datos.modelos.cliente import Cliente
 
-def listado_clientes():
-    clientes = Cliente.select()
-    if clientes:
-        return clientes
 
-def guardar_pais(pais:Pais):
+def guardar_cliente(cliente_obj):
     try:
-        guardar_pais = pais.save()
-        if guardar_pais == 1:
-            print(f'Pais guardado con éxito con Id: {pais.id_pais}.')
-    except IntegrityError as e:
-        print(f"Error de clave unica o clave foránea: {e}")
+        cliente_obj.save()
+        return True, "Cliente registrado exitosamente."
+    except IntegrityError:
+        return False, "Error: El RUT ingresado ya existe en la base de datos."
     except OperationalError as e:
-        print(f"Error operacional\n(pérdida de conexión, falta una tabla o base de datos bloqueada): {e}")
-    except DataError as e:
-        # Handles data values out of range or incorrect formats
-        print(f"Valor insertdo NO corresponde: {e}")
-    except PeeweeException as e:
-        print(f"No se pudieron guardar los datos por un error genérico: {e}")
+        return False, f"Error de conexión con MySQL: {e}"
 
-def modificar_cliente():
+
+def listar_clientes_activos():
     try:
-        while 
-    except Exception as error:
-        print(f'ha ocurrido un error: {error}')
+        return list(Cliente.select())
+    except Exception as e:
+        print(f"Error al consultar clientes: {e}")
+        return []
+
+
+def buscar_cliente_por_rut(rut):
+    # Busca directamente por la columna rut
+    return Cliente.get_or_none(Cliente.rut == rut.strip())
+
+
+def actualizar_cliente(cliente_obj):
+    try:
+        cliente_obj.save()
+        return True, "Operación realizada correctamente."
+    except Exception as e:
+        return False, f"Error al actualizar: {e}"

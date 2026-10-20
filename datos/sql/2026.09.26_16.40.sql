@@ -4,15 +4,16 @@ CREATE TABLE cliente (
     nombre_apellido VARCHAR(50) NOT NULL,
     correo VARCHAR(100),
     telefono VARCHAR(15),
+    habilitado BOOLEAN DEFAULT TRUE,
     CONSTRAINT pk_cliente PRIMARY KEY (id_cliente)
-);
-
+)
 
 CREATE TABLE restaurantes (
     id_restaurante INT AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
     telefono VARCHAR(12),
     direccion VARCHAR(100),
+    habilitado BOOLEAN DEFAULT TRUE,
     CONSTRAINT pk_restaurantes PRIMARY KEY (id_restaurante)
   
 ) COMMENT 'Informacion de restaurantes';
@@ -23,11 +24,12 @@ CREATE TABLE horarioatencion (
     dia_semana VARCHAR(20) NOT NULL,
     hora_apertura TIME NOT NULL,
     hora_cierre TIME NOT NULL,
-    fk_restaurante INT NOT NULL, 
+    fk_restaurante INT NOT NULL,
+    habilitado BOOLEAN DEFAULT TRUE 
     CONSTRAINT pk_horarioatencion PRIMARY KEY (id_horario),
     CONSTRAINT fk_horario_restaurante FOREIGN KEY (fk_restaurante)
         REFERENCES restaurantes(id_restaurante)
-);
+)
 
 
 CREATE TABLE mesas (
@@ -36,6 +38,7 @@ CREATE TABLE mesas (
     capacidad INT NOT NULL,
     ubicacion VARCHAR(100),
     fk_restaurante INT NOT NULL, 
+    habilitado BOOLEAN DEFAULT TRUE,
     CONSTRAINT pk_mesas PRIMARY KEY (id_mesa),
     CONSTRAINT fk_mesa_restaurante FOREIGN KEY (fk_restaurante)
         REFERENCES restaurantes(id_restaurante),
@@ -50,7 +53,8 @@ CREATE TABLE reservas (
     estado INT NOT NULL DEFAULT 1,
     fk_cliente INT NOT NULL,      
     fk_restaurante INT NOT NULL,  
-    fk_mesa INT NOT NULL,         
+    fk_mesa INT NOT NULL, 
+    habilitado BOOLEAN DEFAULT TRUE,        
     CONSTRAINT pk_reservas PRIMARY KEY (id_reserva),
 
 
