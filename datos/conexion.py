@@ -10,3 +10,5 @@ def conectar_db():
                                 'user': config('user'), 
                                 'password': config('password')})
     return base_datos
+
+db = conectar_db()

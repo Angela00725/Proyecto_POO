@@ -18,4 +18,4 @@ class Restaurante(BaseModel):
     habilitado = BooleanField(default=True)
 
     class Meta:
-        table_name = "restaurante"
+        table_name = "restaurantes"

@@ -29,4 +29,4 @@ class Reserva(Model):
 
     class Meta:
         database = db
-        table_name = "reserva"
+        table_name = "reservas"

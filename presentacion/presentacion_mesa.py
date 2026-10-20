@@ -15,7 +15,7 @@ def menu_mesas():
         print("==================================")
         print("1. Registrar nueva mesa")
         print("2. Listar todas las mesas")
-        print("3. Eliminar mesa (Borrado Lógico)")
+        print("3. Eliminar mesa")
         print("0. Volver al menú principal")
 
         opcion = input("\nSeleccione una opción: ").strip()

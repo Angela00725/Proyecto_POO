@@ -23,4 +23,4 @@ class Mesa(BaseModel):
     habilitada = BooleanField(default=True)
 
     class Meta:
-        table_name = "mesa"
+        table_name = "mesas"

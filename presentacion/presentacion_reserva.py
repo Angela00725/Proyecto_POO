@@ -16,7 +16,7 @@ def menu_reservas():
         print("==================================")
         print("1. Crear nueva reserva")
         print("2. Listar reservas activas")
-        print("3. Cancelar reserva (Borrado Lógico)")
+        print("3. Cancelar reserva")
         print("0. Volver al menú principal")
 
         opcion = input("\nSeleccione una opción: ").strip()

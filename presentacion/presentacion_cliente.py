@@ -16,7 +16,7 @@ def menu_clientes():
         print("1. Registrar nuevo cliente")
         print("2. Listar clientes activos")
         print("3. Modificar cliente por RUT")
-        print("4. Eliminar cliente (Borrado Lógico)")
+        print("4. Eliminar cliente")
         print("0. Volver al menú principal")
 
         opcion = input("\nSeleccione una opción: ").strip()

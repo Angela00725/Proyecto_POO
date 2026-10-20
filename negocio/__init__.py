@@ -1,4 +1,4 @@
 from negocio.negocio_cliente import crear_cliente, eliminar_cliente_logico, modificar_cliente, obtener_clientes 
 from negocio.negocio_mesa import crear_mesa, eliminar_mesa_logico, obtener_mesas
-from negocio.negocio_reserva import cancelar_reserva, crear_reserva, obtener_reservas,
+from negocio.negocio_reserva import cancelar_reserva, crear_reserva, obtener_reservas
 from negocio.negocio_restaurante import crear_restaurante, eliminar_restaurante_logico,modificar_restaurante, obtener_restaurantes
