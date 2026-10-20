@@ -1,89 +1,48 @@
-from prettytable import PrettyTable
-
-from negocio.negocio_reserva import (
-    cancelar_reserva,
-    crear_reserva,
-    obtener_reservas,
+from datos.modelos.reservas import Reserva
+from datos.repositorios.repositorio_clientes import buscar_cliente_por_rut
+from datos.repositorios.repositorio_mesa import buscar_mesa_por_id
+from datos.repositorios.repositorio_reserva import (
+    actualizar_reserva,
+    buscar_reserva_por_id,
+    guardar_reserva,
+    listar_reservas_activas,
 )
-from presentacion.presentacion_cliente import mostrar_tabla_clientes
-from presentacion.presentacion_mesa import mostrar_tabla_mesas
 
 
-def menu_reservas():
-    while True:
-        print("\n==================================")
-        print("       GESTIÓN DE RESERVAS        ")
-        print("==================================")
-        print("1. Crear nueva reserva")
-        print("2. Listar reservas activas")
-        print("3. Cancelar reserva (Borrado Lógico)")
-        print("0. Volver al menú principal")
+def crear_reserva(rut_cliente, id_mesa, fecha, hora, cantidad_personas):
+    cliente = buscar_cliente_por_rut(rut_cliente)
+    if not cliente:
+        return False, f"No existe un cliente activo con el RUT '{rut_cliente}'."
 
-        opcion = input("\nSeleccione una opción: ").strip()
+    mesa = buscar_mesa_por_id(id_mesa)
+    if not mesa:
+        return False, f"No existe una mesa activa con ID {id_mesa}."
 
-        match opcion:
-            case "1":
-                print("\n--- CREAR RESERVA ---")
-                mostrar_tabla_clientes()
-                rut_cliente = input("\nIngrese el RUT del Cliente: ").strip()
+    if cantidad_personas > mesa.capacidad_personas:
+        return False, f"La mesa seleccionada solo tiene capacidad para {mesa.capacidad_personas} personas."
 
-                mostrar_tabla_mesas()
-                try:
-                    id_mesa = int(input("\nIngrese el ID de la Mesa seleccionada: "))
-                    fecha = input("Fecha de reserva (AAAA-MM-DD): ").strip()
-                    hora = input("Hora de reserva (HH:MM): ").strip()
-                    cant = int(input("Cantidad de asistentes: "))
-
-                    mensaje = crear_reserva(rut_cliente, id_mesa, fecha, hora, cant)
-                    print(f"\n>> {mensaje}")
-                except ValueError:
-                    print("\n>> Error: La mesa y cantidad deben ser valores numéricos.")
-
-            case "2":
-                mostrar_tabla_reservas()
-
-            case "3":
-                print("\n--- CANCELAR RESERVA ---")
-                mostrar_tabla_reservas()
-                try:
-                    id_res = int(input("\nIngrese el ID de la reserva a cancelar: "))
-                    exito, mensaje = cancelar_reserva(id_res)
-                    print(f"\n>> {mensaje}")
-                except ValueError:
-                    print("\n>> Error: El ID debe ser un número entero.")
-
-            case "0":
-                break
-            case _:
-                print("\n>> Opción no válida.")
+    nueva_reserva = Reserva(
+        id_cliente=cliente,
+        id_restaurante=mesa.id_restaurante,
+        id_mesa=mesa,
+        fecha_reserva=fecha,
+        hora_reserva=hora,
+        cantidad_personas=cantidad_personas,
+        estado="Reservada",
+        habilitado=True,
+    )
+    return guardar_reserva(nueva_reserva)
 
 
-def mostrar_tabla_reservas():
-    lista = obtener_reservas()
-    if not lista:
-        print("\nNo hay reservas registradas.")
-        return
+def obtener_reservas():
+    return listar_reservas_activas()
 
-    tabla = PrettyTable()
-    tabla.field_names = [
-        "ID Reserva",
-        "Cliente",
-        "Restaurante",
-        "N° Mesa",
-        "Fecha",
-        "Hora",
-        "Asistentes",
-        "Estado",
-    ]
-    for r in lista:
-        tabla.add_row([
-            r.id_reserva,
-            r.id_cliente.nombre_apellido,
-            r.id_mesa.id_restaurante.nombre,
-            r.id_mesa.numero_mesa,
-            r.fecha_reserva,
-            r.hora_reserva,
-            r.cantidad_personas,
-            r.estado,
-        ])
-    print(tabla)
+
+def cancelar_reserva(id_reserva):
+    reserva = buscar_reserva_por_id(id_reserva)
+    if not reserva:
+        return False, f"No se encontró una reserva activa con ID {id_reserva}."
+
+    reserva.estado = "Cancelada"
+    reserva.habilitado = False
+    return actualizar_reserva(reserva)
