@@ -1,4 +1,4 @@
-from peewee import AutoField, BooleanField, ForeignKeyField, IntegerField, Model
+from peewee import AutoField, CharField, ForeignKeyField, IntegerField, Model
 
 from datos.conexion import conectar_db
 from datos.modelos.restaurante import Restaurante
@@ -16,11 +16,11 @@ class Mesa(BaseModel):
     id_restaurante = ForeignKeyField(
         Restaurante,
         backref="mesas",
-        column_name="id_restaurante",
+        column_name="fk_restaurante",
     )
     numero_mesa = IntegerField()
-    capacidad_personas = IntegerField()
-    habilitada = BooleanField(default=True)
+    capacidad_personas = IntegerField(column_name="capacidad")
+    ubicacion = CharField(max_length=100, null=True)
 
     class Meta:
         table_name = "mesas"

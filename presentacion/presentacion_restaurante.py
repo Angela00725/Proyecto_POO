@@ -27,7 +27,7 @@ def menu_restaurantes():
                 nombre = input("Nombre de la sucursal: ")
                 direccion = input("Dirección: ")
                 telefono = input("Teléfono (opcional): ")
-                exito, mensaje = crear_restaurante(nombre, direccion, telefono)
+                mensaje = crear_restaurante(nombre, direccion, telefono)
                 print(f"\n>> {mensaje}")
             case "2":
                 mostrar_tabla_restaurantes()
@@ -40,7 +40,7 @@ def menu_restaurantes():
                     n_nombre = input("Nuevo Nombre: ")
                     n_dir = input("Nueva Dirección: ")
                     n_tel = input("Nuevo Teléfono: ")
-                    exito, mensaje = modificar_restaurante(id_rest, n_nombre, n_dir, n_tel)
+                    mensaje = modificar_restaurante(id_rest, n_nombre, n_dir, n_tel)
                     print(f"\n>> {mensaje}")
                 except ValueError:
                     print("\n>> Error: El ID debe ser un número entero.")

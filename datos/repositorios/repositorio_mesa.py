@@ -11,16 +11,14 @@ def guardar_mesa(mesa_obj):
 
 def listar_mesas_activas():
     try:
-        return list(Mesa.select().where(Mesa.habilitada == True))
+        return list(Mesa.select())
     except Exception as e:
         print(f"Error al listar mesas: {e}")
         return []
 
 
 def buscar_mesa_por_id(id_mesa):
-    return Mesa.get_or_none(
-        (Mesa.id_mesa == id_mesa) & (Mesa.habilitada == True)
-    )
+    return Mesa.get_or_none(Mesa.id_mesa == id_mesa)
 
 
 def actualizar_mesa(mesa_obj):
