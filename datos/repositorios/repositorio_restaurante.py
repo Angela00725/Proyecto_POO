@@ -1,4 +1,5 @@
-from peewee import OperationalError
+from peewee import IntegrityError, OperationalError
+
 from datos.modelos.restaurante import Restaurante
 
 
@@ -6,16 +7,16 @@ def guardar_restaurante(restaurante_obj):
     try:
         restaurante_obj.save()
         return True, "Restaurante registrado exitosamente."
-    except OperationalError as e:
-        return False, f"Error de conexión: {e}"
+    except IntegrityError:
+        return False, "No fue posible registrar el restaurante por sus datos."
+    except OperationalError as error:
+        return False, f"Error de conexión con MySQL: {error}"
 
 
 def listar_restaurantes_activos():
-    try:
-        return list(Restaurante.select().where(Restaurante.habilitado == True))
-    except Exception as e:
-        print(f"Error al consultar restaurantes: {e}")
-        return []
+    return list(
+        Restaurante.select().where(Restaurante.habilitado == True)
+    )
 
 
 def buscar_restaurante_por_id(id_restaurante):
@@ -29,5 +30,16 @@ def actualizar_restaurante(restaurante_obj):
     try:
         restaurante_obj.save()
         return True, "Restaurante actualizado correctamente."
-    except Exception as e:
-        return False, f"Error al actualizar: {e}"
+    except IntegrityError:
+        return False, "No fue posible actualizar el restaurante por sus datos."
+    except OperationalError as error:
+        return False, f"Error de conexión con MySQL: {error}"
+
+
+def eliminar_restaurante_logico(id_restaurante):
+    restaurante = buscar_restaurante_por_id(id_restaurante)
+    if not restaurante:
+        return False, "Restaurante no encontrado."
+
+    restaurante.habilitado = False
+    return actualizar_restaurante(restaurante)

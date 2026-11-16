@@ -1,4 +1,5 @@
-from peewee import IntegrityError, OperationalError
+from peewee import IntegrityError, OperationalError, fn
+
 from datos.modelos.cliente import Cliente
 
 
@@ -7,27 +8,46 @@ def guardar_cliente(cliente_obj):
         cliente_obj.save()
         return True, "Cliente registrado exitosamente."
     except IntegrityError:
-        return False, "Error: El RUT ingresado ya existe en la base de datos."
-    except OperationalError as e:
-        return False, f"Error de conexión con MySQL: {e}"
+        return False, "Error: El RUT ingresado ya existe."
+    except OperationalError as error:
+        return False, f"Error de conexión con MySQL: {error}"
 
 
 def listar_clientes_activos():
-    try:
-        return list(Cliente.select())
-    except Exception as e:
-        print(f"Error al consultar clientes: {e}")
-        return []
+    return list(Cliente.select().where(Cliente.habilitado == True))
 
 
 def buscar_cliente_por_rut(rut):
-    # Busca directamente por la columna rut
-    return Cliente.get_or_none(Cliente.rut == rut.strip())
+    rut_normalizado = rut.replace(".", "").replace("-", "").strip().upper()
+    return Cliente.get_or_none(
+        (
+            fn.UPPER(fn.REPLACE(fn.REPLACE(Cliente.rut, ".", ""), "-", ""))
+            == rut_normalizado
+        )
+        & (Cliente.habilitado == True)
+    )
+
+
+def buscar_cliente_por_id(id_cliente):
+    return Cliente.get_or_none(
+        (Cliente.id_cliente == id_cliente) & (Cliente.habilitado == True)
+    )
 
 
 def actualizar_cliente(cliente_obj):
     try:
         cliente_obj.save()
-        return True, "Operación realizada correctamente."
-    except Exception as e:
-        return False, f"Error al actualizar: {e}"
+        return True, "Cliente actualizado correctamente."
+    except IntegrityError:
+        return False, "Error: El RUT ingresado ya existe."
+    except OperationalError as error:
+        return False, f"Error de conexión con MySQL: {error}"
+
+
+def eliminar_cliente_logico(rut):
+    cliente = buscar_cliente_por_rut(rut)
+    if not cliente:
+        return False, "Cliente no encontrado."
+
+    cliente.habilitado = False
+    return actualizar_cliente(cliente)

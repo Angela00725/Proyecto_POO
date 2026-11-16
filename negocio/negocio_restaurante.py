@@ -2,6 +2,7 @@ from datos.modelos.restaurante import Restaurante
 from datos.repositorios.repositorio_restaurante import (
     actualizar_restaurante,
     buscar_restaurante_por_id,
+    eliminar_restaurante_logico as deshabilitar_restaurante,
     guardar_restaurante,
     listar_restaurantes_activos,
 )
@@ -14,7 +15,7 @@ def crear_restaurante(nombre, direccion, telefono):
     nuevo_restaurante = Restaurante(
         nombre=nombre.strip(),
         direccion=direccion.strip(),
-        telefono=telefono.strip() if telefono.strip() else None,
+        telefono=telefono.strip() or None,
         habilitado=True,
     )
     return guardar_restaurante(nuevo_restaurante)
@@ -40,9 +41,4 @@ def modificar_restaurante(id_restaurante, nuevo_nombre, nueva_direccion, nuevo_t
 
 
 def eliminar_restaurante_logico(id_restaurante):
-    restaurante = buscar_restaurante_por_id(id_restaurante)
-    if not restaurante:
-        return False, f"No se encontró un restaurante activo con ID {id_restaurante}."
-
-    restaurante.habilitado = False
-    return actualizar_restaurante(restaurante)
+    return deshabilitar_restaurante(id_restaurante)

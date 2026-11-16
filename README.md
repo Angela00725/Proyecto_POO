@@ -4,12 +4,12 @@ Un sistema de consola en Python diseñado bajo los principios de la Programació
 
 ## Características Principales
 
-- Gestión de Restaurantes: Registro, edición y listado de sucursales activas.
-- Gestión de Clientes: Registro de clientes con RUT y control de datos de contacto.
-- Gestión de Mesas: Registro de mesas asociadas a restaurantes con control de capacidad física.
-- Gestión de Reservas: 
-  - Validaciones de reglas de negocio en la capa correspondiente (ej. verificación de capacidad de mesa antes de confirmar).
-  - Cancelación y borrado lógico de reservas.
+- Gestión CRUD de restaurantes y clientes.
+- Gestión CRUD de mesas asociadas a restaurantes.
+- Gestión de reservas: creación, modificación, cancelación y validación de capacidad.
+- Estado de reserva: `1 = Reservada`, `2 = Cancelada`, `3 = Completada`.
+- Gestión CRUD de usuarios y horarios de atención.
+- Validación de RUT, correo y contraseña; las contraseñas de usuario se almacenan con bcrypt.
 - Interfaz Visual en Consola: Despliegue de tablas formateadas mediante `PrettyTable`.
 
 ## Arquitectura del Sistema
@@ -31,4 +31,12 @@ El proyecto implementa una arquitectura multicapa con separación limpia de resp
 - Conector DB: PyMySQL
 - Librerías Adicionales:
   - `prettytable`: Para el formato de tablas en consola.
-  - `python-decouple`: Para el manejo seguro de variables de entorno (`.env`).
+  - `python-decouple`: Para leer la configuración desde variables de entorno (`.env`).
+  - `bcrypt`: Para generar hashes seguros de contraseñas.
+
+## Ejecución
+
+1. Configura la conexión a MySQL en el archivo `.env`.
+2. Ejecuta el script `datos/sql/01_crear_tablas.sql` en la base de datos.
+3. Instala las dependencias con `pip install -r requirements.txt`.
+4. Inicia el sistema con `python app.py`.

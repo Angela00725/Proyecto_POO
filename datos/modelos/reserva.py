@@ -1,5 +1,6 @@
 from peewee import (
     AutoField,
+    BooleanField,
     CharField,
     DateField,
     ForeignKeyField,
@@ -14,6 +15,10 @@ from datos.modelos.mesas import Mesa
 from datos.modelos.restaurante import Restaurante
 
 db = conectar_db()
+
+ESTADO_RESERVADA = 1
+ESTADO_CANCELADA = 2
+ESTADO_COMPLETADA = 3
 
 
 class BaseModel(Model):
@@ -35,7 +40,8 @@ class Reserva(BaseModel):
     fecha_reserva = DateField(column_name="fecha")
     hora_reserva = TimeField(column_name="hora")
     cantidad_personas = IntegerField()
-    estado = CharField(default="Reservada")
+    estado = IntegerField(default=ESTADO_RESERVADA)
+    habilitado = BooleanField(default=True)
 
     class Meta:
         table_name = "reservas"

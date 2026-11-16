@@ -1,0 +1,6 @@
+peewee
+PyMySQL
+prettytable
+python-decouple
+bcrypt==5.0.0
+maskpass==0.3.7

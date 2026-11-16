@@ -27,7 +27,7 @@ def menu_restaurantes():
                 nombre = input("Nombre de la sucursal: ")
                 direccion = input("Dirección: ")
                 telefono = input("Teléfono (opcional): ")
-                mensaje = crear_restaurante(nombre, direccion, telefono)
+                _, mensaje = crear_restaurante(nombre, direccion, telefono)
                 print(f"\n>> {mensaje}")
             case "2":
                 mostrar_tabla_restaurantes()
@@ -40,7 +40,7 @@ def menu_restaurantes():
                     n_nombre = input("Nuevo Nombre: ")
                     n_dir = input("Nueva Dirección: ")
                     n_tel = input("Nuevo Teléfono: ")
-                    mensaje = modificar_restaurante(id_rest, n_nombre, n_dir, n_tel)
+                    _, mensaje = modificar_restaurante(id_rest, n_nombre, n_dir, n_tel)
                     print(f"\n>> {mensaje}")
                 except ValueError:
                     print("\n>> Error: El ID debe ser un número entero.")
@@ -51,7 +51,7 @@ def menu_restaurantes():
                     id_rest = int(input("\nIngrese el ID del restaurante a deshabilitar: "))
                     confirmar = input(f"¿Confirma deshabilitar el restaurante ID {id_rest}? (s/n): ").lower()
                     if confirmar == "s":
-                        exito, mensaje = eliminar_restaurante_logico(id_rest)
+                        _, mensaje = eliminar_restaurante_logico(id_rest)
                         print(f"\n>> {mensaje}")
                 except ValueError:
                     print("\n>> Error: El ID debe ser un número entero.")
