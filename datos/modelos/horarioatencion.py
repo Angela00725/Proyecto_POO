@@ -3,22 +3,13 @@ from peewee import (
     BooleanField,
     CharField,
     ForeignKeyField,
-    Model,
     TimeField,
 )
 
-from datos.conexion import conectar_db
+from datos.conexion import ModelBase
 from datos.modelos.restaurante import Restaurante
 
-db = conectar_db()
-
-
-class BaseModel(Model):
-    class Meta:
-        database = db
-
-
-class Horarioatencion(BaseModel):
+class Horarioatencion(ModelBase):
     id_horario = AutoField(primary_key=True)
     dia_semana = CharField(max_length=20)
     hora_apertura = TimeField()

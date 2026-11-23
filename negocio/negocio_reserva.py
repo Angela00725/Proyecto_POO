@@ -1,9 +1,9 @@
 from datetime import date, time
 
 from datos.modelos.reserva import ESTADO_RESERVADA, Reserva
-from datos.repositorios.repositorio_clientes import buscar_cliente_por_rut
-from datos.repositorios.repositorio_mesa import buscar_mesa_por_id
-from datos.repositorios.repositorio_reserva import (
+from datos.repositorio.repositorio_clientes import buscar_cliente_por_rut
+from datos.repositorio.repositorio_mesa import buscar_mesa_por_id
+from datos.repositorio.repositorio_reserva import (
     actualizar_reserva,
     buscar_reserva_por_id,
     cancelar_reserva as deshabilitar_reserva,

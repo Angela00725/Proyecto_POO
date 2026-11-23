@@ -4,20 +4,12 @@ from peewee import (
     CharField,
     DateField,
     IntegerField,
-    Model,
 )
 
-from datos.conexion import conectar_db
-
-db = conectar_db()
+from datos.conexion import ModelBase
 
 
-class BaseModel(Model):
-    class Meta:
-        database = db
-
-
-class Usuario(BaseModel):
+class Usuario(ModelBase):
     id_usuario = AutoField(primary_key=True)
     rut = CharField(max_length=12, unique=True)
     nombre = CharField(max_length=25)

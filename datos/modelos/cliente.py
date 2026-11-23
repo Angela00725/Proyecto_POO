@@ -1,16 +1,9 @@
-from peewee import AutoField, BooleanField, CharField, Model
+from peewee import AutoField, BooleanField, CharField
 
-from datos.conexion import conectar_db
-
-db = conectar_db()
+from datos.conexion import ModelBase
 
 
-class BaseModel(Model):
-    class Meta:
-        database = db
-
-
-class Cliente(BaseModel):
+class Cliente(ModelBase):
     id_cliente = AutoField()
     rut = CharField(max_length=12, unique=True)
     nombre_apellido = CharField(max_length=50)

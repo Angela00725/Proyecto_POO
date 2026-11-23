@@ -1,12 +1,12 @@
 from datos.modelos.mesas import Mesa
-from datos.repositorios.repositorio_mesa import (
+from datos.repositorio.repositorio_mesa import (
     actualizar_mesa,
     buscar_mesa_por_id,
     eliminar_mesa_logico as deshabilitar_mesa,
     guardar_mesa,
     listar_mesas_activas,
 )
-from datos.repositorios.repositorio_restaurante import buscar_restaurante_por_id
+from datos.repositorio.repositorio_restaurante import buscar_restaurante_por_id
 
 
 def crear_mesa(id_restaurante, numero_mesa, capacidad, ubicacion=""):

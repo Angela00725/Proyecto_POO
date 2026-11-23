@@ -1,16 +1,9 @@
-from peewee import AutoField, BooleanField, CharField, Model
+from peewee import AutoField, BooleanField, CharField
 
-from datos.conexion import conectar_db
-
-db = conectar_db()
+from datos.conexion import ModelBase
 
 
-class BaseModel(Model):
-    class Meta:
-        database = db
-
-
-class Restaurante(BaseModel):
+class Restaurante(ModelBase):
     id_restaurante = AutoField(primary_key=True)
     nombre = CharField(max_length=100)
     direccion = CharField(max_length=150)

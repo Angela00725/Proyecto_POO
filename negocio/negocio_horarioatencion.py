@@ -1,13 +1,13 @@
 from datetime import time
 
 from datos.modelos.horarioatencion import Horarioatencion
-from datos.repositorios.repositorio_horarioatencion import (
+from datos.repositorio.repositorio_horarioatencion import (
     actualizar_horario,
     buscar_horario_por_id,
     guardar_horario,
     listar_horarios_activos,
 )
-from datos.repositorios.repositorio_restaurante import buscar_restaurante_por_id
+from datos.repositorio.repositorio_restaurante import buscar_restaurante_por_id
 
 
 def _convertir_hora(hora):

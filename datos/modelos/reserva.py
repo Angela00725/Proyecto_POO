@@ -5,28 +5,20 @@ from peewee import (
     DateField,
     ForeignKeyField,
     IntegerField,
-    Model,
     TimeField,
 )
 
-from datos.conexion import conectar_db
+from datos.conexion import ModelBase
 from datos.modelos.cliente import Cliente
 from datos.modelos.mesas import Mesa
 from datos.modelos.restaurante import Restaurante
-
-db = conectar_db()
 
 ESTADO_RESERVADA = 1
 ESTADO_CANCELADA = 2
 ESTADO_COMPLETADA = 3
 
 
-class BaseModel(Model):
-    class Meta:
-        database = db
-
-
-class Reserva(BaseModel):
+class Reserva(ModelBase):
     id_reserva = AutoField(primary_key=True)
     id_cliente = ForeignKeyField(
         Cliente, backref="reservas", column_name="fk_cliente"

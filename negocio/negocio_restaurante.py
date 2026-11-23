@@ -1,5 +1,5 @@
 from datos.modelos.restaurante import Restaurante
-from datos.repositorios.repositorio_restaurante import (
+from datos.repositorio.repositorio_restaurante import (
     actualizar_restaurante,
     buscar_restaurante_por_id,
     eliminar_restaurante_logico as deshabilitar_restaurante,

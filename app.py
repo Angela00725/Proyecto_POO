@@ -1,4 +1,5 @@
-if __name__ == "__main__":
-    from presentacion.menu import menu_principal
+from main import main
 
-    menu_principal()
+
+if __name__ == "__main__":
+    main()

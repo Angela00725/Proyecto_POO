@@ -4,21 +4,12 @@ from peewee import (
     CharField,
     ForeignKeyField,
     IntegerField,
-    Model,
 )
 
-from datos.conexion import conectar_db
+from datos.conexion import ModelBase
 from datos.modelos.restaurante import Restaurante
 
-db = conectar_db()
-
-
-class BaseModel(Model):
-    class Meta:
-        database = db
-
-
-class Mesa(BaseModel):
+class Mesa(ModelBase):
     id_mesa = AutoField(primary_key=True)
     id_restaurante = ForeignKeyField(
         Restaurante,

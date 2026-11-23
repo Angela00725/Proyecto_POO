@@ -3,7 +3,7 @@ from datetime import date
 from auxiliares.validaciones import generar_hash, validar_contrasena, validar_correo
 from auxiliares.validar_rut import validar_rut
 from datos.modelos.usuario import Usuario
-from datos.repositorios.repositorio_usuario import (
+from datos.repositorio.repositorio_usuario import (
     actualizar_usuario,
     buscar_usuario_por_id,
     guardar_usuario,

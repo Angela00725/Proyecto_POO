@@ -1,5 +1,6 @@
-from peewee import MySQLDatabase
+from peewee import Model, MySQLDatabase
 from decouple import config
+
 
 def conectar_db():
     base_datos = MySQLDatabase(config('db'), 
@@ -12,3 +13,8 @@ def conectar_db():
     return base_datos
 
 db = conectar_db()
+
+
+class ModelBase(Model):
+    class Meta:
+        database = db

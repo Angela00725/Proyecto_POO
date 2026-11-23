@@ -14,7 +14,10 @@ from presentacion.presentacion_horarioatencion import menu_horarios
 from presentacion.presentacion_usuario import menu_usuarios
 
 
-def menu_principal():
+def menu_principal(usuario):
+    if usuario is None:
+        raise PermissionError("Debe iniciar sesión antes de acceder al menú.")
+
     separador = "=" * (len(nombre_aplicacion) + len(version_aplicacion) + 3)
     print(f"\n{nombre_aplicacion} - {version_aplicacion}")
     print(f"{separador}\n")

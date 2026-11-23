@@ -1,1 +1,1 @@
-from datos.conexion import conectar_db
+from datos.conexion import ModelBase, conectar_db

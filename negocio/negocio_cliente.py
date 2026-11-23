@@ -1,5 +1,5 @@
 from datos.modelos.cliente import Cliente
-from datos.repositorios.repositorio_clientes import (
+from datos.repositorio.repositorio_clientes import (
     actualizar_cliente,
     buscar_cliente_por_rut,
     eliminar_cliente_logico as deshabilitar_cliente,
